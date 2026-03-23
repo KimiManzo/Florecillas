@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para ti 💛</title>
+
+<style>
+body {
+    margin: 0;
+    background: radial-gradient(circle, #fff7cc, #ffd633);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    overflow: hidden;
+}
+
+h1 {
+    margin-top: 40px;
+    color: #5a4a00;
+}
+
+/* FLOR */
+.flor {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 60px auto;
+}
+
+.petalo {
+    width: 60px;
+    height: 100px;
+    background: gold;
+    border-radius: 50%;
+    position: absolute;
+    top: 25px;
+    left: 45px;
+    transform-origin: bottom center;
+    opacity: 0;
+    transition: all 0.8s ease;
+}
+
+.centro {
+    width: 50px;
+    height: 50px;
+    background: brown;
+    border-radius: 50%;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+
+/* MENSAJE */
+#mensaje {
+    color: #5a4a00;
+    font-size: 18px;
+    padding: 0 20px;
+}
+
+/* BOTÓN */
+button {
+    margin-top: 20px;
+    padding: 15px 25px;
+    font-size: 18px;
+    background: #ffcc00;
+    border: none;
+    border-radius: 10px;
+}
+
+/* BRILLOS */
+.sparkle {
+    position: absolute;
+    font-size: 20px;
+    animation: brillar 2s infinite;
+}
+
+@keyframes brillar {
+    0% {opacity: 0;}
+    50% {opacity: 1;}
+    100% {opacity: 0;}
+}
+</style>
+</head>
+
+<body>
+
+<h1>Para ti 💛</h1>
+
+<div class="flor">
+    <div class="petalo" id="p1"></div>
+    <div class="petalo" id="p2"></div>
+    <div class="petalo" id="p3"></div>
+    <div class="petalo" id="p4"></div>
+    <div class="petalo" id="p5"></div>
+    <div class="petalo" id="p6"></div>
+    <div class="petalo" id="p7"></div>
+    <div class="petalo" id="p8"></div>
+    <div class="centro"></div>
+</div>
+
+<p id="mensaje">Toca el botón… 💛</p>
+
+<button onclick="abrirFlor()">Haz florecer 🌻</button>
+
+<script>
+function abrirFlor() {
+
+    let angulos = [0,45,90,135,180,225,270,315];
+
+    angulos.forEach((angulo, i) => {
+        let p = document.getElementById("p" + (i+1));
+
+        setTimeout(() => {
+            p.style.opacity = "1";
+            p.style.transform =
+            "rotate(" + angulo + "deg) translateY(-60px)";
+        }, i * 200);
+    });
+
+    document.getElementById("mensaje").innerHTML =
+    "Así como esta flor florece... 🌻<br><br>mi amor por ti también crece cada día 💛<br><br>Eres lo más bonito que me ha pasado.";
+
+    crearBrillos();
+}
+
+function crearBrillos() {
+    setInterval(() => {
+        let s = document.createElement("div");
+        s.className = "sparkle";
+        s.innerText = "✨";
+
+        s.style.left = Math.random() * 100 + "vw";
+        s.style.top = Math.random() * 100 + "vh";
+
+        document.body.appendChild(s);
+
+        setTimeout(() => s.remove(), 2000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
