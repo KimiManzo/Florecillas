@@ -1,21 +1,42 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Para ti 💛</title>
+<title>Para Yaneth 💛</title>
 
 <style>
 body {
     margin: 0;
-    background: radial-gradient(circle, #fff7cc, #ffd633);
     font-family: Arial, sans-serif;
-    text-align: center;
     overflow: hidden;
 }
 
-h1 {
-    margin-top: 40px;
+/* PANTALLAS */
+.pantalla {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: opacity 1s;
+}
+
+/* INTRO */
+#intro {
+    background: linear-gradient(#fff7cc, #ffd633);
+}
+
+#intro h1 {
     color: #5a4a00;
+}
+
+/* MAIN */
+#main {
+    background: radial-gradient(circle, #fff7cc, #ffd633);
+    opacity: 0;
 }
 
 /* FLOR */
@@ -23,7 +44,7 @@ h1 {
     position: relative;
     width: 150px;
     height: 150px;
-    margin: 60px auto;
+    margin: 20px;
 }
 
 .petalo {
@@ -49,21 +70,23 @@ h1 {
     left: 50px;
 }
 
-/* MENSAJE */
-#mensaje {
+/* CARTA */
+.carta {
+    opacity: 0;
+    transition: opacity 2s;
+    text-align: center;
+    padding: 20px;
     color: #5a4a00;
-    font-size: 18px;
-    padding: 0 20px;
 }
 
-/* BOTÓN */
+/* BOTONES */
 button {
-    margin-top: 20px;
     padding: 15px 25px;
     font-size: 18px;
     background: #ffcc00;
     border: none;
     border-radius: 10px;
+    margin-top: 10px;
 }
 
 /* BRILLOS */
@@ -83,26 +106,61 @@ button {
 
 <body>
 
-<h1>Para ti 💛</h1>
-
-<div class="flor">
-    <div class="petalo" id="p1"></div>
-    <div class="petalo" id="p2"></div>
-    <div class="petalo" id="p3"></div>
-    <div class="petalo" id="p4"></div>
-    <div class="petalo" id="p5"></div>
-    <div class="petalo" id="p6"></div>
-    <div class="petalo" id="p7"></div>
-    <div class="petalo" id="p8"></div>
-    <div class="centro"></div>
+<!-- INTRO -->
+<div class="pantalla" id="intro">
+    <h1>Esto es para ti, Yaneth 💛</h1>
+    <button onclick="entrar()">Abrir 💌</button>
 </div>
 
-<p id="mensaje">Toca el botón… 💛</p>
+<!-- MAIN -->
+<div class="pantalla" id="main">
 
-<button onclick="abrirFlor()">Haz florecer 🌻</button>
+    <h2>Para Yaneth 🌻</h2>
+
+    <div class="flor">
+        <div class="petalo" id="p1"></div>
+        <div class="petalo" id="p2"></div>
+        <div class="petalo" id="p3"></div>
+        <div class="petalo" id="p4"></div>
+        <div class="petalo" id="p5"></div>
+        <div class="petalo" id="p6"></div>
+        <div class="petalo" id="p7"></div>
+        <div class="petalo" id="p8"></div>
+        <div class="centro"></div>
+    </div>
+
+    <button onclick="florecer()">Haz florecer 🌻</button>
+
+    <div class="carta" id="carta">
+        <p>
+        Yaneth... 💛<br><br>
+        Desde que llegaste a mi vida todo florece más bonito 🌻<br><br>
+        No importa la distancia ni los días difíciles,<br>
+        porque siempre que pienso en ti… todo mejora.<br><br>
+        Eres mi lugar favorito, mi paz y lo mejor que me ha pasado.<br><br>
+        Te amo muchísimo 💛
+        </p>
+
+        <button onclick="responder()">💌 Responder</button>
+    </div>
+
+</div>
+
+<audio id="musica" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
 
 <script>
-function abrirFlor() {
+function entrar() {
+    document.getElementById("intro").style.opacity = "0";
+
+    setTimeout(() => {
+        document.getElementById("intro").style.display = "none";
+        document.getElementById("main").style.opacity = "1";
+    }, 1000);
+}
+
+function florecer() {
+    let audio = document.getElementById("musica");
+    audio.play();
 
     let angulos = [0,45,90,135,180,225,270,315];
 
@@ -116,10 +174,13 @@ function abrirFlor() {
         }, i * 200);
     });
 
-    document.getElementById("mensaje").innerHTML =
-    "Así como esta flor florece... 🌻<br><br>mi amor por ti también crece cada día 💛<br><br>Eres lo más bonito que me ha pasado.";
+    document.getElementById("carta").style.opacity = "1";
 
     crearBrillos();
+}
+
+function responder() {
+    alert("Ahora te toca a ti decirme cuánto me amas 😏💛");
 }
 
 function crearBrillos() {
